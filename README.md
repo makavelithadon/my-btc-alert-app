@@ -10,7 +10,7 @@ clone this repository
   npm i | yarn
 ```
 
-/!\ Add a `.env` file and add this /!\
+:warning: Add a `.env` file on your project root and add this :warning:
 
 ```
 NODE_PATH=./src

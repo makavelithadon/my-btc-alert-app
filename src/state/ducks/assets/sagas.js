@@ -17,7 +17,7 @@ function* assetWorkerSaga() {
     yield put(fetchAssetsSuccess(filterAssetsByType(assets.slice(0, 50))));
   } catch (err) {
     console.error("error", err);
-    yield put(fetchAssetsFailure(err));
+    yield put(fetchAssetsFailure(err.response));
   }
 }
 

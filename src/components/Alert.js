@@ -91,7 +91,6 @@ function Alert({
       .catch(err => console.error("reject", err));
   };
   useEffect(() => {
-    console.log("mounted", above, below);
     const initializedValues = {};
     if (above) initializedValues.above = above;
     if (below) initializedValues.below = below;

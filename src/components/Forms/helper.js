@@ -117,7 +117,7 @@ export const validation = {
       errors.below = invalidPriceFieldError;
     }
     const pricesAreBlank =
-      (!above || !String(above).trim()) && (!below || !below.trim());
+      (!above || !String(above).trim()) && (!below || !String(below).trim());
     if (pricesAreBlank) {
       errors.above = blankPriceField;
       errors.below = blankPriceField;

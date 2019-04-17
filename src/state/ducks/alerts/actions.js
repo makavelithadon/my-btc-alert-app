@@ -1,7 +1,8 @@
 import {
   ADD_ALERT,
   ADD_ALERT_SUCCESS,
-  EDIT_ALERT_SUCCESS,
+  UPDATE_ALERT,
+  UPDATE_ALERT_SUCCESS,
   DELETE_ALERT,
   DELETE_ALERT_SUCCESS
 } from "./types";
@@ -15,8 +16,18 @@ export const createAlertSuccess = alert => ({
   payload: alert
 });
 
-export const editAlertSuccess = alert => ({
-  type: EDIT_ALERT_SUCCESS,
+export const updateAlert = (alert, formId, resolve, reject) => {
+  return {
+    type: UPDATE_ALERT,
+    payload: alert,
+    formId,
+    resolve,
+    reject
+  };
+};
+
+export const updateAlertSuccess = alert => ({
+  type: UPDATE_ALERT_SUCCESS,
   payload: alert
 });
 

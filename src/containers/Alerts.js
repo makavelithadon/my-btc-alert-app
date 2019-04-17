@@ -6,10 +6,11 @@ const mapStateToProps = (state, ownProps) => ({
   alerts: alertSelectors.getAllAlerts(state)
 });
 
-const { deleteAlert } = alertActions;
+const { deleteAlert, updateAlert } = alertActions;
 
 const mapDispatchToProps = {
-  deleteAlert
+  deleteAlert,
+  updateAlert
 };
 
 export default connect(

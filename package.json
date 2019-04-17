@@ -5,6 +5,7 @@
   "dependencies": {
     "@manaflair/redux-batch": "^1.0.0",
     "array.prototype.flat": "^1.2.1",
+    "d3-ease": "^1.0.5",
     "hex-rgb": "^4.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

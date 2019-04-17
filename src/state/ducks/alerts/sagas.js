@@ -1,6 +1,10 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { ADD_ALERT, DELETE_ALERT } from "./types";
-import { createAlertSuccess, deleteAlertSuccess } from "./actions";
+import { ADD_ALERT, DELETE_ALERT, UPDATE_ALERT } from "./types";
+import {
+  createAlertSuccess,
+  deleteAlertSuccess,
+  updateAlertSuccess
+} from "./actions";
 import { delay, getUniqID } from "utils";
 import { stopSubmit } from "redux-form";
 
@@ -36,7 +40,26 @@ function* deleteAlertWorkerSaga({ payload: alert }) {
   }
 }
 
+function updateAlert(alert) {
+  //await delay(2000);
+  return alert;
+}
+
+function* updateAlertWorkerSaga({ payload: alert, formId, resolve, reject }) {
+  try {
+    const res = yield call(updateAlert, alert);
+    yield put(updateAlertSuccess(alert));
+    yield put(stopSubmit(formId));
+    resolve(alert);
+  } catch (err) {
+    console.error("err", err);
+    yield put(stopSubmit(formId));
+    reject(alert);
+  }
+}
+
 export default function* assetsWatcherSaga() {
   yield takeLatest(ADD_ALERT, createAlertWorkerSaga);
   yield takeLatest(DELETE_ALERT, deleteAlertWorkerSaga);
+  yield takeLatest(UPDATE_ALERT, updateAlertWorkerSaga);
 }

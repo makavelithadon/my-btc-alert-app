@@ -36,6 +36,7 @@ const StyledLink = styled(NavLink)`
     margin-right: 40px;
   }
   &.active {
+    color: ${({ theme }) => theme.colors.lightGrey};
     &::after {
       width: 100%;
     }

@@ -1,6 +1,6 @@
 import {
   ADD_ALERT_SUCCESS,
-  EDIT_ALERT_SUCCESS,
+  UPDATE_ALERT_SUCCESS,
   DELETE_ALERT_SUCCESS
 } from "./types";
 import { combineReducers } from "redux";
@@ -8,10 +8,17 @@ import { combineReducers } from "redux";
 function byId(state = {}, action) {
   switch (action.type) {
     case ADD_ALERT_SUCCESS:
-    case EDIT_ALERT_SUCCESS:
       return {
         ...state,
         [action.payload.id]: action.payload
+      };
+    case UPDATE_ALERT_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          ...action.payload
+        }
       };
     case DELETE_ALERT_SUCCESS:
       const byId = { ...state };

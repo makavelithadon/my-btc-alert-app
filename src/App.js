@@ -9,14 +9,15 @@ import Layout from "containers/Layout";
 import Home from "containers/Home";
 import Alerts from "containers/Alerts";
 import { useTransition, animated, config } from "react-spring";
+import { easeExpOut } from "d3-ease";
 
 const store = configureStore();
 
 const AnimatedRoutes = styled(animated.div).attrs(
-  ({ opacity, translatey }) => ({
+  ({ opacity, translatex }) => ({
     style: {
       opacity,
-      transform: translatey.interpolate(y => `translate3d(0, ${y}px, 0)`)
+      transform: translatex.interpolate(x => `translate3d(${x}px, 0, 0)`)
     }
   })
 )`
@@ -31,11 +32,17 @@ const AnimatedRoutes = styled(animated.div).attrs(
 
 function Base({ location }) {
   const transitions = useTransition(location, location.pathname, {
-    from: { opacity: 0, translatey: 20 },
-    enter: { opacity: 1, translatey: 0 },
-    leave: { opacity: 0, translatey: 0 },
+    from: { opacity: 0, translatex: 100 },
+    enter: { opacity: 1, translatex: 0 },
+    leave: { opacity: 0, translatex: 0 },
     unique: true,
-    config: { ...config.gentle, clamp: true, duration: 250 }
+    config: (_, action) => {
+      return {
+        ...config.gentle,
+        duration: action !== "leave" ? 650 : 450,
+        easing: easeExpOut
+      };
+    }
   });
   return transitions.map(({ item, key, props }) => {
     return (

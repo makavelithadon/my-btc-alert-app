@@ -35,7 +35,6 @@ function Base({ location }) {
     from: { opacity: 0, translatex: 100 },
     enter: { opacity: 1, translatex: 0 },
     leave: { opacity: 0, translatex: 0 },
-    unique: true,
     config: (_, action) => {
       return {
         ...config.gentle,

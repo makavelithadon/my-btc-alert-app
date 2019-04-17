@@ -1,0 +1,17 @@
+{
+  "749710d-11a0-464e-bb57-54066388d4f6": {
+    "email": "romuald.duconseil@hotmail.fr",
+    "above": 400,
+    "below": 80,
+    "name": "Ripple",
+    "asset_id": "XRP",
+    "id": "749710d-11a0-464e-bb57-54066388d4f6"
+  },
+  "749at10d-1270-464e-bb57-54066388878": {
+    "email": "romuald.duconseil@hotmail.fr",
+    "above": 7000,
+    "name": "Bitcoin",
+    "asset_id": "BTC",
+    "id": "749at10d-1270-464e-bb57-54066388878"
+  }
+}

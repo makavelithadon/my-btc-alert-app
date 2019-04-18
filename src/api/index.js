@@ -16,5 +16,15 @@ export default {
     async getAll(fields) {
       return fetch(`${this.endpoint}`);
     }
+  },
+  exchangerate: {
+    endpoint: "/v1/exchangerate",
+    async getExchangeRate(asset_id, asset_id_quote, time) {
+      let params;
+      if (time) {
+        params = { time: new Date(Date.parse(time)).toISOString() };
+      }
+      return fetch(`${this.endpoint}/${asset_id}/${asset_id_quote}`, params);
+    }
   }
 };

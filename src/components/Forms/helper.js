@@ -50,7 +50,7 @@ export const renderSelectAsset = ({
   if (!input.value || !input.value.trim()) input.value = "";
   return (
     <>
-      <select {...input} ref={refName} style={{ marginBottom: "2rem" }}>
+      <select {...input} ref={refName}>
         {opts.map(opt => (
           <option key={opt.asset_id} value={setOption(opt)}>
             {setOption(opt)}

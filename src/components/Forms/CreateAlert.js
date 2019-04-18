@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { Field, reduxForm } from "redux-form";
 import Label from "UI/Form/Label";
 import Button from "UI/Button";
@@ -10,6 +11,20 @@ import {
   normalizeCreateALertFormValues,
   validation
 } from "./helper";
+import bitcoinIcon from "assets/icons/bitcoin-icon.svg";
+import api from "api";
+
+const StyledRate = styled.p`
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.lightGrey};
+`;
+
+const StyledBitcoinIcon = styled.img`
+  width: 18px;
+  vertical-align: middle;
+  margin-right: 10px;
+`;
 
 function CreateAlert({
   handleCreate,
@@ -39,6 +54,12 @@ function CreateAlert({
   useEffect(() => {
     initialize(formValues ? formValues : { coin: setOption(assets[0]) });
   }, []);
+  const [rate, setRate] = useState("");
+  const rateMarkup = (
+    <>
+      <StyledBitcoinIcon src={bitcoinIcon} alt="Bitcoin Icon" />| {rate} USD
+    </>
+  );
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Label htmlFor={"coin"}>Coin to watch</Label>
@@ -48,7 +69,14 @@ function CreateAlert({
         id="coin"
         component={renderSelectAsset}
         opts={assets}
+        onChange={async (e, value) => {
+          const assetId = value.slice(value.indexOf("(") + 1, -1);
+          const res = await api.exchangerate.getExchangeRate(assetId, "USD");
+          setRate(res.rate);
+        }}
       />
+      <br />
+      <StyledRate>{rate && rateMarkup}</StyledRate>
       <br />
       <Label htmlFor={"email"}>Alert me by email</Label>
       <div>
